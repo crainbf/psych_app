@@ -23,8 +23,8 @@ function start() {
 	// $('#blue').click(response);
 }
 
-function response() {
-	if ('red' === COLORS[stimColor]) {
+function response(clicked_id) {
+	if (clicked_id === COLORS[stimColor]) {
 		$('#response').html('The answer is correct.');
 	} else {
 		$('#response').html('The answer is NOT correct.');
