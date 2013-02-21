@@ -11,9 +11,14 @@
 		<p>Click on the color of the word written ignoring the letters.</p>
 
 		<button id='start' type='submit' value='start'>Start</button>
+
+		<h3>This is trial number <div id="num_trials">0</div> out of 30.</h3>
+
+		<div>Your current score is: <div id="score"></div></div>
 		<div id='stimulus'></div>
 		<div id='response'></div>
 
+		<p>You responded in <div id="trial_duration"></div> milliseconds.</p>
 
 		<button id="red" onClick="response(this.id)">Red</button>
 		<button id='blue' onClick="response(this.id)">Blue</button>
