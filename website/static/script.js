@@ -52,31 +52,28 @@ function response(clicked_id) {
 	"use strict";
 	var trial = {
 		duration: get_duration(),
-		stimulus_color: COLORS[stimColor]
+		stimulus_color: COLORS[stimColor],
+		response_color: clicked_id
 	};
+	trials[num_trials - 1] = trial;
 
+	$('#score').html(num_correct + ' out of ' + num_trials);
+	
 	if (clicked_id === COLORS[stimColor]) {
-		trial.correct = true;
 		num_correct += 1;
-
-		//Save the trial to the trials array
-		trials[num_trials - 1] = trial;
-
+		
 		$('#response').html('The answer is correct.');
-		$('#score').html(num_correct + ' out of ' + num_trials);
-
+		//Clear stimulus
 		$('#stimulus').empty();
 
 		setTimeout(start, 1500);
 
 	} else {
-		trial.correct = false;
-		//Save the trial to the trials array
-		trials[num_trials - 1] = trial;
 
 		$('#response').html('The answer is NOT correct.');
-		$('#score').html(num_correct + ' out of ' + num_trials);
+		//clear stimulus
+		$('#stimulus').empty();
 
-		start();
+		setTimeout(start, 1500);
 	}
 }
