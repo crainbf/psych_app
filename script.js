@@ -1,4 +1,4 @@
-/*global $, document*/
+/*global $, document, setTimeout, console*/
 
 var COLORS = ["red", "blue", "green"];
 
@@ -11,13 +11,11 @@ var stimColor, start_time;
 
 function start() {
 	"use strict";
-	//hide start button
-	$('#start').hide();
 
 	//write hello in random color
 	stimColor = Math.floor(3 * Math.random());
 	$('#stimulus').css('color', COLORS[stimColor]);
-	$('#stimulus').html('Hello');
+	$('#stimulus').html(TEXT[stimColor]);
 
 	//increment trial by 1 and write to counter
 	num_trials += 1;
@@ -27,9 +25,16 @@ function start() {
 	start_time = Date.now();
 }
 
+function hide_start() {
+	"use strict";
+	$('#start').hide();
+	start();
+
+}
+
 $(document).ready(function () {
 	"use strict";
-	$('#start').click(start);
+	$('#start').click(hide_start);
 });
 
 function get_duration() {
@@ -60,7 +65,9 @@ function response(clicked_id) {
 		$('#response').html('The answer is correct.');
 		$('#score').html(num_correct + ' out of ' + num_trials);
 
-		start();
+		$('#stimulus').empty();
+
+		setTimeout(start, 1500);
 
 	} else {
 		trial.correct = false;
@@ -72,15 +79,4 @@ function response(clicked_id) {
 
 		start();
 	}
-
 }
-
-//Not actually using this function yet. 
-function interrupt() {
-	"use strict";
-
-	$('#stimulus').html('');
-}
-
-
-
