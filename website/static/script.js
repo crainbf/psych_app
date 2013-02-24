@@ -1,5 +1,6 @@
 /*global $, document, setTimeout, console*/
 
+//http://rohanradio.com/blog/2011/02/22/posting-json-with-jquery/
 jQuery.extend({
 	postJSON: function(params) {
 		return jQuery.ajax(jQuery.extend(params, {
@@ -9,6 +10,20 @@ jQuery.extend({
 			contentType: "application/json",
 			processData: false
 		}));
+	}
+});
+
+//https://docs.djangoproject.com/en/dev/ref/contrib/csrf/#ajax
+function csrfSafeMethod(method) {
+	return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+}
+
+$.ajaxSetup({
+	crossDomain: false,
+	beforeSend: function(xhr, settings) {
+		if (!csrfSafeMethod(settings.type)) {
+			xhr.setRequestHeader('X-CSRFToken', $.cookie('csrftoken'));
+		}
 	}
 });
 
