@@ -1,5 +1,17 @@
 /*global $, document, setTimeout, console*/
 
+jQuery.extend({
+	postJSON: function(params) {
+		return jQuery.ajax(jQuery.extend(params, {
+			type: "POST",
+			data: JSON.stringify(params.data),
+			dataType: "json",
+			contentType: "application/json",
+			processData: false
+		}));
+	}
+});
+
 var COLORS = ["red", "blue", "green"];
 
 var TEXT = ["RED", "BLUE", "GREEN"];
