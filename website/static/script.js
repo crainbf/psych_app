@@ -20,7 +20,7 @@ var num_correct = 0;
 var num_trials = 0;
 var trials = [];
 var stimColor, start_time;
-var max_trials = 30;
+var max_trials = 3;
 
 function start() {
 	"use strict";
@@ -92,8 +92,8 @@ function response(clicked_id) {
 		//clear stimulus
 		$('#stimulus').empty();
 	}
+
 	if (num_trials == max_trials)
 		submit_answers();
 	setTimeout(start, 1500);
-
 }
