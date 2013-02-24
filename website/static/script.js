@@ -78,14 +78,11 @@ function response(clicked_id) {
 		//Clear stimulus
 		$('#stimulus').empty();
 
-		setTimeout(start, 1500);
-
 	} else {
 
 		$('#response').html('The answer is NOT correct.');
 		//clear stimulus
 		$('#stimulus').empty();
-
-		setTimeout(start, 1500);
 	}
+	setTimeout(start, 1500);
 }
