@@ -62,7 +62,7 @@ function get_duration() {
 
 function submit_answers() {
 	$.postJSON({
-		url: '/trial',
+		url: '/trial/',
 		data: trials,
 	});
 }
