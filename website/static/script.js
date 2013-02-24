@@ -62,7 +62,7 @@ function get_duration() {
 
 function submit_answers() {
 	$.postJSON({
-		url: 'http://localhost:8081',
+		url: '/trial',
 		data: trials,
 	});
 }
