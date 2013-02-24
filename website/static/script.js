@@ -35,7 +35,7 @@ var num_correct = 0;
 var num_trials = 0;
 var trials = [];
 var stimColor, start_time;
-var max_trials = 3;
+var max_trials = 30;
 
 function start() {
 	"use strict";
