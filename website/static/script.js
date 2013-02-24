@@ -20,6 +20,7 @@ var num_correct = 0;
 var num_trials = 0;
 var trials = [];
 var stimColor, start_time;
+var max_trials = 30;
 
 function start() {
 	"use strict";
@@ -59,6 +60,13 @@ function get_duration() {
 	return trial_duration;
 }
 
+function submit_answers() {
+	$.postJSON({
+		url: 'http://localhost:8081',
+		data: trials,
+	});
+}
+
 
 function response(clicked_id) {
 	"use strict";
@@ -84,5 +92,8 @@ function response(clicked_id) {
 		//clear stimulus
 		$('#stimulus').empty();
 	}
+	if (num_trials == max_trials)
+		submit_answers();
 	setTimeout(start, 1500);
+
 }
