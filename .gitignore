@@ -1,2 +1,5 @@
 # Ignoring Python log files
 *.pyc
+
+# Ignoring .DS_Store file
+.DS_Store
