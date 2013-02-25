@@ -90,7 +90,7 @@ function response(clicked_id) {
 		stimulus_color: COLORS[stimColor],
 		response_color: clicked_id
 	};
-	trials[num_trials - 1] = trial;
+	trials.push(trial);
 
 	$('#score').html(num_correct + ' out of ' + num_trials);
 	
