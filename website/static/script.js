@@ -40,6 +40,9 @@ var max_trials = 30;
 function start() {
 	"use strict";
 
+	//reenable stimulus buttons
+	$('#red, #blue, #green').removeAttr("disabled");
+
 	//write hello in random color
 	stimColor = Math.floor(3 * Math.random());
 	$('#stimulus').css('color', COLORS[stimColor]);
@@ -55,7 +58,8 @@ function start() {
 
 function hide_start() {
 	"use strict";
-	$('#start').hide();
+	//disable start button
+	$('#start').attr("disabled", "disabled");
 	start();
 
 }
@@ -107,6 +111,8 @@ function response(clicked_id) {
 		//clear stimulus
 		$('#stimulus').empty();
 	}
+	//temporarily disable stimulus buttons
+	$('#red, #blue, #green').attr("disabled", "disabled");
 
 	if (num_trials == max_trials)
 		submit_answers();
