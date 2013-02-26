@@ -38,10 +38,6 @@ STATIC_URL = '/static/'
 
 SECRET_KEY = 'da3pa53uej9=fjz5$lwcn4nsn4jwfu3tl(vca6#zxiq8os53lj'
 
-MIDDLEWARE_CLASSES = (
-    'django.middleware.common.CommonMiddleware',
-)
-
 ROOT_URLCONF = 'psych_app.urls'
 
 WSGI_APPLICATION = 'psych_app.wsgi.application'
