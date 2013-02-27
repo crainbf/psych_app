@@ -1,4 +1,4 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls import patterns, url
 
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
@@ -6,7 +6,7 @@ from django.conf.urls import patterns, include, url
 
 urlpatterns = patterns('',
     url(r'^$', 'website.views.home'),
-	url(r'^trial/$', 'website.views.trial'),
+    url(r'^trial/$', 'website.views.trial'),
     # Examples:
     # url(r'^$', 'psych_app.views.home', name='home'),
     # url(r'^psych_app/', include('psych_app.foo.urls')),
