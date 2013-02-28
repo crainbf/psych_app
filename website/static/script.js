@@ -81,8 +81,8 @@ function get_duration() {
     return trial_duration;
 }
 
+// http://stackoverflow.com/questions/10024469/whats-the-best-way-to-retry-an-ajax-request-on-failure-using-jquery/10024557#10024557
 function submit_answers() {
-    // No handler is attached to the ajax request, so no redirect to './tria/' takes place
     $.postJSON({
         url: '/trial/',
         tryCount : 0,
