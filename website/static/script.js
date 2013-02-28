@@ -116,6 +116,7 @@ function response(clicked_id) {
     var trial = {
         duration: get_duration(),
         stimulus_color: COLORS[stimColor],
+        stimulus_word: stimWord,
         response_color: clicked_id
     };
     trials.push(trial);
