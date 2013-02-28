@@ -35,7 +35,7 @@ var num_correct = 0;
 var num_trials = 0;
 var trials = [];
 var stimColor, start_time;
-var max_trials = 30;
+var max_trials = 3;
 
 function start() {
 	"use strict";
@@ -82,7 +82,7 @@ function get_duration() {
 function submit_answers() {
 	$.postJSON({
 		url: '/trial/',
-		data: trials,
+		data: trials
 	});
 }
 
@@ -97,10 +97,10 @@ function response(clicked_id) {
 	trials.push(trial);
 
 	$('#score').html(num_correct + ' out of ' + num_trials);
-	
+
 	if (clicked_id === COLORS[stimColor]) {
 		num_correct += 1;
-		
+
 		$('#response').html('The answer is correct.');
 		//Clear stimulus
 		$('#stimulus').empty();
