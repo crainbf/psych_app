@@ -16,7 +16,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': 'psych_app.db',
-	}
+    }
 }
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
