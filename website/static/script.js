@@ -27,10 +27,6 @@ $.ajaxSetup({
     }
 });
 
-$(document).ready(function(){
-    $('#red, #blue, #green').attr("disabled", "disabled");
-});
-
 var COLORS = ["red", "blue", "green"];
 
 var TEXT = ["RED", "BLUE", "GREEN"];
@@ -67,11 +63,11 @@ function hide_start() {
     //disable start button
     $('#start').attr("disabled", "disabled");
     start();
-
 }
 
 $(document).ready(function () {
     "use strict";
+    $('#red, #blue, #green').attr("disabled", "disabled");
     $('#start').click(hide_start);
 });
 
