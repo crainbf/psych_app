@@ -34,7 +34,7 @@ var TEXT = ["RED", "BLUE", "GREEN"];
 var num_correct = 0;
 var num_trials = 0;
 var trials = [];
-var stimColor, start_time;
+var stimColor, stimWord, start_time;
 var max_trials = 3;
 
 function start() {
@@ -45,8 +45,10 @@ function start() {
 
 	//write hello in random color
 	stimColor = Math.floor(3 * Math.random());
+	stimWord = Math.floor(3 * Math.random());
+
 	$('#stimulus').css('color', COLORS[stimColor]);
-	$('#stimulus').html(TEXT[stimColor]);
+	$('#stimulus').html(TEXT[stimWord]);
 
 	//increment trial by 1 and write to counter
 	num_trials += 1;
