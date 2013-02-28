@@ -5,3 +5,4 @@
 .DS_Store
 
 # Ignoring SQLite Database file
+psych_app.db
