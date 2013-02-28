@@ -26,14 +26,13 @@ def trial(request):
                     reaction_time=obj['duration']
                 )
                 objects.append(trial)
-
             #create the objects in bulk, this saves a GREAT amount of time
             TrialResponse.objects.bulk_create(objects)
+
+            return HttpResponse('Thank you.')
 
         else:
             #For now, this is just a view for POSTing data
             return HttpResponseNotAllowed(['POST'])
-
-    #In either case, we're done. If we checked the return data in the
-    #javascript code, we would see 'OK'
-    return HttpResponse('OK')
+    else:
+        return HttpResponse('Thank you.')
