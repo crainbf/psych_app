@@ -83,12 +83,13 @@ function get_duration() {
 
 // http://stackoverflow.com/questions/10024469/whats-the-best-way-to-retry-an-ajax-request-on-failure-using-jquery/10024557#10024557
 function submit_answers() {
+    "use strict";
     $.postJSON({
         url: '/trial/',
         tryCount : 0,
         retryLimit : 3,
         data: trials,
-        success : function() {
+        success : function(data) {
             window.location = '/trial/';
         },
         error : function(xhr, textStatus, errorThrown ) {
