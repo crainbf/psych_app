@@ -9,8 +9,8 @@ def home(request):
     return render(request, 'website/home.html')
 
 def csrf(request):
-	get_token(request)
-	return HttpResponse('')
+    get_token(request)
+    return HttpResponse('')
 
 def trial(request):
     #We're posting only with AJAX, so if it is not ajax, don't do anything
