@@ -6,3 +6,7 @@
 
 # Ignoring SQLite Database file
 psych_app.db
+
+#Vim swap files
+.*.swp
+.*.swo
