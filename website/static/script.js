@@ -49,7 +49,7 @@ function ajaxSetup() {
     }
 }
 
-var COLORS = ["red", "blue", "green"];
+var COLORS = ["red", "blue"];
 
 var num_correct = 0;
 var num_trials = 0;
@@ -60,12 +60,9 @@ var max_trials = 3;
 function start() {
     "use strict";
 
-    //reenable stimulus buttons
-    $('#red, #blue, #green').removeAttr("disabled");
-
     //write hello in random color
-    stimColor = Math.floor(3 * Math.random());
-    stimWord = Math.floor(3 * Math.random());
+    stimColor = Math.floor(2 * Math.random());
+    stimWord = Math.floor(2 * Math.random());
 
     $('#stimulus').css('color', COLORS[stimColor]);
     $('#stimulus').html(COLORS[stimWord]);
@@ -85,9 +82,18 @@ function hide_start() {
     start();
 }
 
+//Allowing keyboard input
+$(document).keydown(function(event){
+    if (event.keyCode === 70){
+        $('#red').trigger('click');
+    } else if (event.keyCode === 74){
+        $('#blue').trigger('click');
+    }
+});
+
+
 $(document).ready(function () {
     "use strict";
-    $('#red, #blue, #green').attr("disabled", "disabled");
     $('#start').click(hide_start);
     ajaxSetup();
 });
@@ -158,8 +164,6 @@ function response(clicked_id) {
         //clear stimulus
         $('#stimulus').empty();
     }
-    //temporarily disable stimulus buttons
-    $('#red, #blue, #green').attr("disabled", "disabled");
 
     if (num_trials == max_trials)
         submit_answers();

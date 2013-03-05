@@ -13,3 +13,7 @@ h2 {
 #response {
 	height: 20px;
 }
+
+#red, #blue {
+    display: none;
+}
