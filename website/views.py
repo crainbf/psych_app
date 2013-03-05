@@ -1,15 +1,17 @@
 from django.http import HttpResponse, HttpResponseNotAllowed
+from django.middleware.csrf import get_token
 from django.shortcuts import render
-import json
 from website.models import TrialResponse
-from django.views.decorators.csrf import csrf_exempt
+import json
 
 
 def home(request):
     return render(request, 'website/home.html')
 
+def csrf(request):
+    get_token(request)
+    return HttpResponse('')
 
-@csrf_exempt
 def trial(request):
     #We're posting only with AJAX, so if it is not ajax, don't do anything
     if request.is_ajax():
@@ -29,7 +31,7 @@ def trial(request):
             #create the objects in bulk, this saves a GREAT amount of time
             TrialResponse.objects.bulk_create(objects)
 
-            return HttpResponse('Thank you.')
+            return HttpResponse('{"status": true}', content_type='application/json')
 
         else:
             #For now, this is just a view for POSTing data

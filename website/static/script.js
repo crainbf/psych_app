@@ -1,31 +1,53 @@
 /*global $, document, setTimeout, console*/
 
-//http://rohanradio.com/blog/2011/02/22/posting-json-with-jquery/
-jQuery.extend({
-    postJSON: function(params) {
-        return jQuery.ajax(jQuery.extend(params, {
-            type: "POST",
-            data: JSON.stringify(params.data),
-            dataType: "json",
-            contentType: "application/json",
-            processData: false
-        }));
-    }
-});
+function ajaxSetup() {
+    function ajaxSetupCsrf() {
+        //http://rohanradio.com/blog/2011/02/22/posting-json-with-jquery/
+        $.extend({
+            postJSON: function(params) {
+                return jQuery.ajax(jQuery.extend(params, {
+                    type: "POST",
+                    data: JSON.stringify(params.data),
+                    dataType: "json",
+                    contentType: "application/json",
+                    processData: false
+                }));
+            }
+        });
 
-//https://docs.djangoproject.com/en/dev/ref/contrib/csrf/#ajax
-function csrfSafeMethod(method) {
-    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
-}
-
-$.ajaxSetup({
-    crossDomain: false,
-    beforeSend: function(xhr, settings) {
-        if (!csrfSafeMethod(settings.type)) {
-            xhr.setRequestHeader('X-CSRFToken', $.cookie('csrftoken'));
+        //https://docs.djangoproject.com/en/dev/ref/contrib/csrf/#ajax
+        function csrfSafeMethod(method) {
+            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
         }
+
+        $.ajaxSetup({
+            crossDomain: false,
+            beforeSend: function(xhr, settings) {
+                if (!csrfSafeMethod(settings.type)) {
+                    xhr.setRequestHeader('X-CSRFToken', $.cookie('csrftoken'));
+                }
+            }
+        });
     }
-});
+
+    if ($.cookie('csrftoken') == null) {
+        $.ajax({
+            type: 'GET',
+            url: '/csrf/',
+            tryCount: 0,
+            retryLimit: 3,
+            success: ajaxSetupCsrf,
+            error: function() {
+                this.tryCount++;
+                if (this.tryCount <= this.retryLimit) {
+                    $.ajax(this);
+                }
+            }
+        });
+    } else {
+        ajaxSetupCsrf();
+    }
+}
 
 var COLORS = ["red", "blue", "green"];
 
@@ -69,6 +91,7 @@ $(document).ready(function () {
     "use strict";
     $('#red, #blue, #green').attr("disabled", "disabled");
     $('#start').click(hide_start);
+    ajaxSetup();
 });
 
 function get_duration() {
@@ -83,12 +106,13 @@ function get_duration() {
 
 // http://stackoverflow.com/questions/10024469/whats-the-best-way-to-retry-an-ajax-request-on-failure-using-jquery/10024557#10024557
 function submit_answers() {
+    "use strict";
     $.postJSON({
         url: '/trial/',
         tryCount : 0,
         retryLimit : 3,
         data: trials,
-        success : function() {
+        success : function(data) {
             window.location = '/trial/';
         },
         error : function(xhr, textStatus, errorThrown ) {
