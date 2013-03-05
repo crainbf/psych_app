@@ -8,9 +8,11 @@ import json
 def home(request):
     return render(request, 'website/home.html')
 
+
 def csrf(request):
     get_token(request)
     return HttpResponse('')
+
 
 def trial(request):
     #We're posting only with AJAX, so if it is not ajax, don't do anything
@@ -24,6 +26,7 @@ def trial(request):
             for obj in data:
                 trial = TrialResponse(
                     stim_color=obj['stimulus_color'],
+                    stim_word=obj['stimulus_word'],
                     response_color=obj['response_color'],
                     reaction_time=obj['duration']
                 )

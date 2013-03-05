@@ -30,7 +30,7 @@ function ajaxSetup() {
         });
     }
 
-    if ($.cookie('csrftoken') == null) {
+    if ($.cookie('csrftoken') === null) {
         $.ajax({
             type: 'GET',
             url: '/csrf/',
@@ -51,8 +51,6 @@ function ajaxSetup() {
 
 var COLORS = ["red", "blue", "green"];
 
-var TEXT = ["RED", "BLUE", "GREEN"];
-
 var num_correct = 0;
 var num_trials = 0;
 var trials = [];
@@ -70,7 +68,7 @@ function start() {
     stimWord = Math.floor(3 * Math.random());
 
     $('#stimulus').css('color', COLORS[stimColor]);
-    $('#stimulus').html(TEXT[stimWord]);
+    $('#stimulus').html(COLORS[stimWord]);
 
     //increment trial by 1 and write to counter
     num_trials += 1;
@@ -140,7 +138,7 @@ function response(clicked_id) {
     var trial = {
         duration: get_duration(),
         stimulus_color: COLORS[stimColor],
-        stimulus_word: stimWord,
+        stimulus_word: COLORS[stimWord],
         response_color: clicked_id
     };
     trials.push(trial);
