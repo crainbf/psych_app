@@ -4,7 +4,8 @@ from django.conf.urls import patterns, url
 # from django.contrib import admin
 # admin.autodiscover()
 
-urlpatterns = patterns('',
+urlpatterns = patterns(
+    '',
     url(r'^$', 'website.views.home'),
     url(r'^trial/$', 'website.views.trial'),
     url(r'^csrf/$', 'website.views.csrf'),
