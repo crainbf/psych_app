@@ -23,7 +23,7 @@ def trial(request):
             data = json.loads(request.body)
             #create the objects we want to insert into the database
             objects = []
-            participant_number = TrialResponse.objects.order_by('participant_id')[0].participant_id + 1
+            participant_number = TrialResponse.objects.order_by('-participant_id')[0].participant_id + 1
             for obj in data:
                 trial = TrialResponse(
                     participant_id=participant_number,
