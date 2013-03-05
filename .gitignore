@@ -10,3 +10,6 @@ psych_app.db
 #Vim swap files
 .*.swp
 .*.swo
+
+#South Migration Folder
+website/migrations/
