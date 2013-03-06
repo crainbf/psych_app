@@ -54,8 +54,9 @@ var COLORS = ["red", "blue"];
 var num_correct = 0;
 var num_trials = 0;
 var trials = [];
-var stimColor, stimWord, start_time;
+var stimColor, stimWord, start_time, url_destin;
 var max_trials = 3;
+var session_no = 4;
 
 function start() {
     "use strict";
@@ -117,7 +118,7 @@ function submit_answers() {
         retryLimit : 3,
         data: trials,
         success : function(data) {
-            window.location = '/trial/';
+            window.location = url_destin;
         },
         error : function(xhr, textStatus, errorThrown ) {
             if (textStatus == 'timeout') {
@@ -165,7 +166,13 @@ function response(clicked_id) {
         $('#stimulus').empty();
     }
 
-    if (num_trials == max_trials)
+    if (num_trials == max_trials){
+        // if (session_no < 4){
+        //     url_destin = '/trial/';
+        // } else {
+            url_destin = '/thanks/';
+        // }
         submit_answers();
+    }
     setTimeout(start, 1500);
 }
