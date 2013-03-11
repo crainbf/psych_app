@@ -62,7 +62,7 @@ if ($.cookie('session_no') === null){
     $.cookie('session_no', 1);
 }
 //Save session number in variable to increment later
-var session_no = parseInt($.cookie('session_no'));
+var session_no = parseInt($.cookie('session_no'), 10);
 
 
 function start() {
@@ -109,7 +109,7 @@ $(document).ready(function () {
 function get_duration() {
     "use strict";
     //gets trial duration
-    var trial_duration =  Date.now() - start_time;
+    var trial_duration = Date.now() - start_time;
 
     //prints duration to screen
     $('#trial_duration').html(trial_duration);
@@ -121,7 +121,12 @@ function submit_answers() {
     "use strict";
     //update session number
     session_no += 1;
-    $.cookie('session_no', session_no);
+    if (session_no < 5){
+        $.cookie('session_no', session_no);
+    }else{
+        $.removeCookie('session_no');
+    }
+
     $.postJSON({
         url: url_destin,
         tryCount : 0,
@@ -131,7 +136,7 @@ function submit_answers() {
             window.location = url_destin;
         },
         error : function(xhr, textStatus, errorThrown ) {
-            if (textStatus == 'timeout') {
+            if (textStatus === 'timeout') {
                 this.tryCount++;
                 if (this.tryCount <= this.retryLimit) {
                     //try again
