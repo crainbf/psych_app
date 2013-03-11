@@ -56,7 +56,14 @@ var num_trials = 0;
 var trials = [];
 var stimColor, stimWord, start_time, url_destin;
 var max_trials = 3;
-var session_no = 4;
+
+//Check if cookie exists and set session to 1 otherwise
+if ($.cookie('session_no') === null){
+    $.cookie('session_no', 1);
+}
+//Save session number in variable to increment later
+var session_no = parseInt($.cookie('session_no'));
+
 
 function start() {
     "use strict";
@@ -112,8 +119,11 @@ function get_duration() {
 // http://stackoverflow.com/questions/10024469/whats-the-best-way-to-retry-an-ajax-request-on-failure-using-jquery/10024557#10024557
 function submit_answers() {
     "use strict";
+    //update session number
+    session_no += 1;
+    $.cookie('session_no', session_no);
     $.postJSON({
-        url: '/trial/',
+        url: url_destin,
         tryCount : 0,
         retryLimit : 3,
         data: trials,
@@ -146,7 +156,8 @@ function response(clicked_id) {
         duration: get_duration(),
         stimulus_color: COLORS[stimColor],
         stimulus_word: COLORS[stimWord],
-        response_color: clicked_id
+        response_color: clicked_id,
+        session_number: $.cookie('session_no')
     };
     trials.push(trial);
 
@@ -167,11 +178,11 @@ function response(clicked_id) {
     }
 
     if (num_trials == max_trials){
-        // if (session_no < 4){
-        //     url_destin = '/trial/';
-        // } else {
+        if ($.cookie('session_no') < 4){
+            url_destin = '/break/';
+        } else {
             url_destin = '/thanks/';
-        // }
+        }
         submit_answers();
     }
     setTimeout(start, 1500);

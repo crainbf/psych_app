@@ -8,4 +8,4 @@ class TrialResponse(models.Model):
     stim_word = models.CharField(max_length=16)
     response_color = models.CharField(max_length=16)
     reaction_time = models.IntegerField()
-
+    session_number = models.IntegerField()

@@ -8,7 +8,7 @@ urlpatterns = patterns(
     '',
     url(r'^$', 'website.views.home'),
     url(r'^thanks/$', 'website.views.thanks'),
-    url(r'^trial/$', 'website.views.trial'),
+    url(r'^break/$', 'website.views.break_screen'),
     url(r'^csrf/$', 'website.views.csrf'),
     # Examples:
     # url(r'^$', 'psych_app.views.home', name='home'),

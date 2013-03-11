@@ -18,14 +18,18 @@ def thanks(request):
             data = json.loads(request.body)
             #create the objects we want to insert into the database
             objects = []
-            participant_number = TrialResponse.objects.order_by('-participant_id')[0].participant_id + 1
+            try:
+                participant_number = TrialResponse.objects.order_by('-participant_id')[0].participant_id + 1
+            except IndexError:
+                participant_number = 1
             for obj in data:
                 trial = TrialResponse(
                     participant_id=participant_number,
                     stim_color=obj['stimulus_color'],
                     stim_word=obj['stimulus_word'],
                     response_color=obj['response_color'],
-                    reaction_time=obj['duration']
+                    reaction_time=obj['duration'],
+                    session_number=obj['session_number'],
                 )
                 objects.append(trial)
             #create the objects in bulk, this saves a GREAT amount of time
@@ -45,7 +49,7 @@ def csrf(request):
     return HttpResponse('')
 
 
-def trial(request):
+def break_screen(request):
     #We're posting only with AJAX, so if it is not ajax, don't do anything
     if request.is_ajax():
         if request.method == 'POST':
@@ -54,14 +58,19 @@ def trial(request):
             data = json.loads(request.body)
             #create the objects we want to insert into the database
             objects = []
-            participant_number = TrialResponse.objects.order_by('-participant_id')[0].participant_id + 1
+            try:
+                participant_number = TrialResponse.objects.order_by('-participant_id')[0].participant_id + 1
+            except IndexError:
+                participant_number = 1
+
             for obj in data:
                 trial = TrialResponse(
                     participant_id=participant_number,
                     stim_color=obj['stimulus_color'],
                     stim_word=obj['stimulus_word'],
                     response_color=obj['response_color'],
-                    reaction_time=obj['duration']
+                    reaction_time=obj['duration'],
+                    session_number=obj['session_number'],
                 )
                 objects.append(trial)
             #create the objects in bulk, this saves a GREAT amount of time
