@@ -54,16 +54,8 @@ var COLORS = ["red", "blue"];
 var num_correct = 0;
 var num_trials = 0;
 var trials = [];
-var stimColor, stimWord, start_time, url_destin;
+var stimColor, stimWord, start_time, url_destin, session_no;
 var max_trials = 3;
-
-//Check if cookie exists and set session to 1 otherwise
-if ($.cookie('session_no') === null){
-    $.cookie('session_no', 1);
-}
-//Save session number in variable to increment later
-var session_no = parseInt($.cookie('session_no'), 10);
-
 
 function start() {
     "use strict";
@@ -106,6 +98,16 @@ $(document).ready(function () {
     "use strict";
     //Disable response
     $('#red, #blue').attr("disabled", "disabled");
+
+    //Check if cookie exists and set session to 1 otherwise
+    if ($.cookie('session_no') === null){
+        $.cookie('session_no', 1);
+    }
+    //Print session count
+    $('#session_no').html($.cookie('session_no'));
+
+    //Save numeric session count in variable for later incrementation 
+    session_no = parseInt($.cookie('session_no'), 10);
 
     $('#start').click(hide_start);
     ajaxSetup();
