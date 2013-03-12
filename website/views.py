@@ -82,4 +82,4 @@ def break_screen(request):
             #For now, this is just a view for POSTing data
             return HttpResponseNotAllowed(['POST'])
     else:
-        return HttpResponse('Thank you.')
+        return render(request, 'website/break.html')
