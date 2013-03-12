@@ -67,6 +67,8 @@ var session_no = parseInt($.cookie('session_no'), 10);
 
 function start() {
     "use strict";
+    //Allow input
+    $('#red, #blue').removeAttr('disabled');
 
     //write hello in random color
     stimColor = Math.floor(2 * Math.random());
@@ -92,9 +94,9 @@ function hide_start() {
 
 //Allowing keyboard input
 $(document).keydown(function(event){
-    if (event.keyCode === 70){
+    if (event.keyCode === 70 && $('#red').attr('disabled') === undefined){
         $('#red').trigger('click');
-    } else if (event.keyCode === 74){
+    } else if (event.keyCode === 74 && $('#blue').attr('disabled') === undefined){
         $('#blue').trigger('click');
     }
 });
@@ -102,6 +104,9 @@ $(document).keydown(function(event){
 
 $(document).ready(function () {
     "use strict";
+    //Disable response
+    $('#red, #blue').attr("disabled", "disabled");
+
     $('#start').click(hide_start);
     ajaxSetup();
 });
@@ -157,6 +162,9 @@ function submit_answers() {
 
 function response(clicked_id) {
     "use strict";
+    //Disable further user input
+    $('#red, #blue').attr('disabled', 'disabled');
+
     var trial = {
         duration: get_duration(),
         stimulus_color: COLORS[stimColor],
