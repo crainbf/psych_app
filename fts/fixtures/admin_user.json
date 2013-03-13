@@ -1,0 +1,20 @@
+[
+{
+  "pk": 1, 
+  "model": "auth.user", 
+  "fields": {
+    "username": "admin", 
+    "first_name": "", 
+    "last_name": "", 
+    "is_active": true, 
+    "is_superuser": true, 
+    "is_staff": true, 
+    "last_login": "2013-03-13T19:20:51.957Z", 
+    "groups": [], 
+    "user_permissions": [], 
+    "password": "pbkdf2_sha256$10000$uyPesyHmTXx3$pVefSusKxithrYy7l5w7wZNeMeFriw1LE/B5QpM7WfA=", 
+    "email": "crain@gmail.com", 
+    "date_joined": "2013-03-13T19:05:22.931Z"
+  }
+}
+]
