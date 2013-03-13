@@ -1,1 +1,4 @@
 -r common.txt
+
+selenium=2.31
+mock=1.0.1
