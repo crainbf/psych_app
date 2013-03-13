@@ -1,4 +1,4 @@
-function delay_redir() {
+function delay_redir(){
     "use strict";
     window.location = "/trial/";
 }
