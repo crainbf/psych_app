@@ -9,6 +9,10 @@ def home(request):
     return render(request, 'website/home.html')
 
 
+def disclaimer(request):
+    return render(request, 'website/disclaimer.html')
+
+
 def thanks(request):
     #We're posting only with AJAX, so if it is not ajax, don't do anything
     if request.is_ajax():

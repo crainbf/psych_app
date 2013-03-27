@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Stroop Task - Disclaimer</title>
+    </head>
+    <body>
+        <h3>Stroop Task - Disclaimer</h3>
+
+        <h4>Please read through the following document and see whether you agree with the conditions.</h4>
+
+        <p>In this study we will ask you to __________________*.  If you have any [insert reason why they should not participate if applicable], please inform the experimenter and the study will end now.  All information you provide will remain confidential and will not be associated with your name.  If for any reason during this study you do not feel comfortable, you may leave the laboratory and receive credit for the time you participated and your information will be discarded.  Your participation in this study will require approximately _____ minutes.  When this study is complete you will be provided with the results of the experiment if you request them, and you will be free to ask any questions.  If you have any further questions concerning this study please feel free to contact us through phone or email: RESEARCHER NAME at NAME@wagner.edu (718-) or SUPERVISOR NAME at NAME@wagner.edu (718-).  Please indicate with your signature on the space below that you understand your rights and agree to participate in the experiment.</p>
+
+        <h4>If you agree with the conditions please click submit to continue to the main experiment.</h4>
+
+        <form action="/trial/" method="post">
+            {% csrf_token %}
+            <input type='submit' value='I shall consent'>
+        </form>
+
+    </body>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.3.1/jquery.cookie.min.js"></script>
+</html>
