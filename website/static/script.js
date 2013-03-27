@@ -77,13 +77,6 @@ function start() {
     start_time = Date.now();
 }
 
-function hide_start() {
-    "use strict";
-    //disable start button
-    $('#start').attr("disabled", "disabled");
-    start();
-}
-
 //Allowing keyboard input
 $(document).keydown(function(event){
     if (event.keyCode === 70 && $('#red').attr('disabled') === undefined){
@@ -109,7 +102,7 @@ $(document).ready(function () {
     //Save numeric session count in variable for later incrementation 
     session_no = parseInt($.cookie('session_no'), 10);
 
-    $('#start').click(hide_start);
+    setTimeout(start, 1500);
     ajaxSetup();
 });
 
