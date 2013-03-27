@@ -1,2 +1,4 @@
 Django==1.5
 South==0.7.6
+Flask==0.8
+
