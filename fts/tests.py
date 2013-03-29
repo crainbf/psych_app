@@ -2,9 +2,8 @@ from django.test import LiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
-
 class AdminFunctionalTest(LiveServerTestCase):
-    fixtures = ['admin_user.json', 'initial_data.json']
+    fixtures = ['initial_data.json']
 
     def setUp(self):
         self.browser = webdriver.Firefox()

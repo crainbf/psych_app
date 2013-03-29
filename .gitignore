@@ -15,4 +15,5 @@ psych_app.db
 website/migrations/
 
 # Fixtures Test Folder
-fixtures/
+fts/fixtures/*
+
