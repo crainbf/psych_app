@@ -2,6 +2,45 @@ from django.test import LiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
+
+class TrialParticipationTest(LiveServerTestCase):
+    def setUp(self):
+        self.browser = webdriver.Firefox()
+        self.browser.implicitly_wait(3)
+
+    def tearDown(self):
+        self.browser.quit()
+
+    def test_can_complete_experiment(self):
+        # Barbie opens her web browser and goes to the disclaimer page
+        self.browser.get(self.live_server_url + '/disclaimer/')
+
+        # She sees the header 'Stroop Task - Disclaimer'
+
+        # She sees the button 'I shall consent' and clicks on it
+
+        # She is taken to a new page with the headline 'Instructions'
+
+        # She sees a checkbox that says 'I understand'
+
+        # She checks the checkbox
+
+        # She sees a button saying 'Start Practice Session' and clicks it
+
+        # She sees the headline 'Stroop Task Practice Session'
+
+        # She sees the text practice trial '1 out of 10'
+
+
+
+        # She is taken to the main experiment page and sees the headlin
+        # 'Simple Stroop Task Experiment'
+
+
+
+
+
+
 class AdminFunctionalTest(LiveServerTestCase):
     fixtures = ['initial_data.json']
 
@@ -42,3 +81,7 @@ class AdminFunctionalTest(LiveServerTestCase):
         self.assertIn('Participant id', body.text)
         self.assertIn('Session number', body.text)
         self.assertIn('Reaction time', body.text)
+
+        self.fail('Success!!')
+
+
