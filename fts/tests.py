@@ -16,6 +16,8 @@ class TrialParticipationTest(LiveServerTestCase):
         self.browser.get(self.live_server_url + '/disclaimer/')
 
         # She sees the header 'Stroop Task - Disclaimer'
+        body = self.browser.find_element_by_tag_name('body')
+        self.assertIn('Stroop - Disclaimer', body)
 
         # She sees the button 'I shall consent' and clicks on it
 
@@ -31,14 +33,9 @@ class TrialParticipationTest(LiveServerTestCase):
 
         # She sees the text practice trial '1 out of 10'
 
-
-
         # She is taken to the main experiment page and sees the headlin
         # 'Simple Stroop Task Experiment'
-
-
-
-
+        self.fail('Not yet...')
 
 
 class AdminFunctionalTest(LiveServerTestCase):
