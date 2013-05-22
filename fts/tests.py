@@ -6,7 +6,7 @@ from selenium.webdriver.common.keys import Keys
 class TrialParticipationTest(LiveServerTestCase):
     def setUp(self):
         self.browser = webdriver.Firefox()
-        self.browser.implicitly_wait(3)
+        self.browser.implicitly_wait(2)
 
     def tearDown(self):
         self.browser.quit()
@@ -17,21 +17,33 @@ class TrialParticipationTest(LiveServerTestCase):
 
         # She sees the header 'Stroop Task - Disclaimer'
         body = self.browser.find_element_by_tag_name('body')
-        self.assertIn('Stroop - Disclaimer', body)
+        self.assertIn('Stroop Task - Disclaimer', body.text)
 
         # She sees the button 'I shall consent' and clicks on it
+        button = self.browser.find_element_by_id('submit_button')
+        button.click()
 
         # She is taken to a new page with the headline 'Instructions'
+        body = self.browser.find_element_by_tag_name('body')
+        self.assertIn('<h2>Instructions</h2>', body.text)
 
         # She sees a checkbox that says 'I understand'
+        self.assertIn('I understand', body.text)
 
-        # She checks the checkbox
+        # She clicks on the 'I understand' checkbox
+        self.browser.click('confirm_understand')
 
-        # She sees a button saying 'Start Practice Session' and clicks it
+        # She clicks on the button 'Start Practice Session'
+        self.browser.click('start_practice')
 
         # She sees the headline 'Stroop Task Practice Session'
+        body = self.browser.find_element_by_tag_name('body')
+        self.assertIn('Stroop Task Practice Session', body.text)
 
         # She sees the text practice trial '1 out of 10'
+        self.assertIn('1 out of 10', body.text)
+
+        # She clicks on 'f'
 
         # She is taken to the main experiment page and sees the headlin
         # 'Simple Stroop Task Experiment'
@@ -43,7 +55,7 @@ class AdminFunctionalTest(LiveServerTestCase):
 
     def setUp(self):
         self.browser = webdriver.Firefox()
-        self.browser.implicitly_wait(3)
+        self.browser.implicitly_wait(2)
 
     def tearDown(self):
         self.browser.quit()
@@ -79,6 +91,4 @@ class AdminFunctionalTest(LiveServerTestCase):
         self.assertIn('Session number', body.text)
         self.assertIn('Reaction time', body.text)
 
-        self.fail('Success!!')
-
-
+        self.fail('Success!')
